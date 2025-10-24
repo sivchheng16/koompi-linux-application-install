@@ -96,14 +96,14 @@ sleep 5
 
 # Install koompi-cli from Github
 
-mkdir $HOME/koompi-tmp-install
+mkdir $HOME/koompi-linux-application-install/koompi-tmp-install
 
-cd koompi-tmp-install
+cd $HOME/koompi-linux-application-install/koompi-tmp-install/  
 
 
 git clone https://github.com/koompi/koompi-cli.git
 
-cd $HOME/koompi-tmp-install/koompi-cli
+cd $HOME/koompi-linux-application-install/koompi-tmp-install/koompi-cli
 
 cargo build --release
 
