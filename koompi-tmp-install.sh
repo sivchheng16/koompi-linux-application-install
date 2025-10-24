@@ -1,5 +1,11 @@
 #!/bin/bash
 
+#Every install or update Doesn't input password every time
+
+echo "All the script install application. Doesn't need to input password every time"
+sudo -v
+while true; do sudo -n true; sleep 60; done 2>/dev/null &
+keep_sudo_alive_pid=$!
 
 # Check for directory only
 if [ -d "$HOME/koompi-tmp-install" ]; then
@@ -53,7 +59,7 @@ else
 fi
 
 
-sleep 5code
+sleep 5
 #Install zip
 if ! command -v zip &> /dev/null; then
     echo "zip is not installed. Let's Install..."
@@ -74,9 +80,10 @@ else
 fi
 
 
-sleep 10
+sleep 5
 
 #Install libroffice
+
 if ! command -v libreoffice &> /dev/null; then
     echo "LibreOffice is not installed. Installing now..."
     sudo pacman -Sy --noconfirm libreoffice-fresh
@@ -88,6 +95,7 @@ fi
 sleep 5
 
 # Install koompi-cli from Github
+
 mkdir $HOME/koompi-tmp-install
 
 cd koompi-tmp-install
@@ -105,9 +113,10 @@ sudo cp target/release/koompi /usr/local/bin
 
 cd $HOME
 
-
 sleep 10
+
 #Install visual studio code
+
 if ! command -v code &> /dev/null; then
     echo "Visual Studio Code is not installed. Installing now..."
     koompi install visual-studio-code-bin
@@ -121,6 +130,19 @@ echo "Success Install, Let's Test"
 sleep 5
 
 echo "Successfull installed"
+
+
+#Kill the sudo input password
+
+kill "$keep_sudo_alive_pid"
+
+sleep 3
+
+echo "Update System By KOOMPI Shell!!...."
+
+koompi update
+
+reboot
 
 
 
