@@ -127,13 +127,13 @@ fi
 
 
 #Install brave browser
-if ! command -v brave &> /dev/null; then
-    echo "Brave is not installed. Installing now..."
-    koompi install brave-bin
+#if ! command -v brave &> /dev/null; then
+ #   echo "Brave is not installed. Installing now..."
+ #   koompi install brave-bin
 
-else
-    echo "Brave is already installed."
-fi
+#else
+ #   echo "Brave is already installed."
+#fi
 
 
 echo "Success Install, Let's Test"
