@@ -20,7 +20,7 @@ fi
 
 
 # Install Rust 
-echo "Next, install Rust, first"
+echo "Install Rust, first"
 
 
 #Check if Rush installed
@@ -41,7 +41,7 @@ sleep 5
 # Check if Zsh is installed
 if ! command -v zsh &> /dev/null; then
     echo "Zsh is not installed. Installing now..."
-    sudo pacman -Sy zsh
+    sudo pacman -Sy --noconfirm zsh
 else 
     echo "zsh is already installed."
 fi
@@ -63,7 +63,7 @@ sleep 5
 #Install zip
 if ! command -v zip &> /dev/null; then
     echo "zip is not installed. Let's Install..."
-    sudo pacman -Sy zip
+    sudo pacman -Sy --noconfirm zip
 else
     echo "Zip is already installed."
 fi
@@ -96,7 +96,7 @@ else
         echo "📦 Installing Telegram..."
         # Detect which package manager is available
         if command -v pacman &> /dev/null; then
-            sudo pacman -S telegram-desktop --noconfirm
+            sudo pacman -S --noconfirm telegram-desktop 
         elif command -v apt &> /dev/null; then
             sudo apt update && sudo apt install telegram-desktop -y
         elif command -v dnf &> /dev/null; then
