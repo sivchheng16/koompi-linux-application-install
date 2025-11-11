@@ -72,13 +72,42 @@ sleep 5
 
 
 #Install Telegram
-if ! command -v telegram-desktop &> /dev/null; then
-    echo "Telegram is not installed. Installing now..."
-    sudo pacman -Sy telegram-desktop
-else
-    echo "Telegram is already installed."
-fi
 
+#if ! command -v telegram-desktop &> /dev/null; then
+ #   echo "Telegram is not installed. Installing now..."
+  #  sudo pacman -Sy telegram-desktop
+#else
+ #   echo "Telegram is already installed."
+#fi
+
+echo "🔍 Checking if Telegram is installed..."
+
+# Check if telegram-desktop command exists
+if command -v telegram-desktop &> /dev/null
+then
+    echo "✅ Telegram is already installed!"
+    telegram-desktop --version
+else
+    echo "❌ Telegram is not installed."
+    echo ""
+    read -p "Do you want to install Telegram now? (y/n): " answer
+
+    if [[ $answer == "y" || $answer == "Y" ]]; then
+        echo "📦 Installing Telegram..."
+        # Detect which package manager is available
+        if command -v pacman &> /dev/null; then
+            sudo pacman -S telegram-desktop --noconfirm
+        elif command -v apt &> /dev/null; then
+            sudo apt update && sudo apt install telegram-desktop -y
+        elif command -v dnf &> /dev/null; then
+            sudo dnf install telegram-desktop -y
+        else
+            echo "⚠️ Sorry, I can’t detect your package manager. Please install manually."
+        fi
+    else
+        echo "🚫 Installation canceled."
+    fi
+fi
 
 sleep 5
 
